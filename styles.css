@@ -89,7 +89,10 @@ footer span:last-child { color: var(--red); }
 .editor-row button { flex: 1; }
 .editable-text, .editable-photo { transition: outline .12s, background .12s; }
 .editor.open .editable-text:hover, .editor.open .editable-photo:hover { outline: 1px dashed rgba(191,62,50,.8); outline-offset: 3px; cursor: grab; }
-.editor.open .selected-edit { outline: 2px solid var(--red); outline-offset: 3px; }
+.hit-layer { position: absolute; inset: 0; z-index: 25; pointer-events: none; }
+.hitbox { position: absolute; display: block; margin: 0; padding: 0; border: 1px dashed rgba(191,62,50,.35); background: rgba(191,62,50,.025); pointer-events: auto; cursor: grab; }
+.hitbox:hover, .editor.open .hitbox:focus-visible { border-color: rgba(191,62,50,.8); background: rgba(191,62,50,.05); }
+.editor.open .hit-layer { pointer-events: auto; }
 .photo.contain img { object-fit: contain; background: #d9d6ce; }
 @media print { .editor { display: none; } }
 @media (max-width: 900px) { .stage { padding: 0; display: grid; overflow: hidden; } .board { width: 100%; margin: 0; } }
