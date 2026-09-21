@@ -39,9 +39,10 @@ h2 { margin: 4% 0 0; font-family: var(--serif); font-size: clamp(19px, 1.75vw, 3
 .photo { margin: 4% 0 0; height: 38%; overflow: hidden; background: #d9d6ce; border: 1px solid #aaa89f; position: relative; }
 .photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.72) contrast(1.04); }
 .photo::after { content: ''; position: absolute; inset: 0; border: 4px solid rgba(255,255,255,.2); pointer-events: none; }
-.photo-fractions img { transform: rotate(90deg) scale(1.23); }
-.photo-surds img { object-position: center; }
-.photo-inequality img, .photo-graph img { transform: rotate(90deg) scale(1.26); }
+.photo-fractions img { transform: rotate(-90deg) scale(1.23); }
+.photo-surds img { transform: rotate(-90deg) scale(1.26); object-position: center; }
+.photo-inequality img { transform: rotate(-90deg) scale(1.26); }
+.photo-graph img { transform: none; }
 .math-line { display: flex; align-items: center; gap: 4%; font-family: var(--serif); font-size: clamp(13px, 1.22vw, 21px); line-height: 1; min-height: 10%; padding: 4% 0 2%; }
 .math-line .arrow, .math-line .not-equal, .math-line .vs { color: var(--red); font-family: var(--mono); font-size: .66em; }
 .insight { font-size: clamp(8px, .68vw, 12px); line-height: 1.3; margin: 0; max-width: 97%; text-wrap: pretty; }
