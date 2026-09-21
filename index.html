@@ -12,7 +12,7 @@
 </head>
 <body>
   <aside class="editor" id="editor" aria-label="Exhibition layout editor">
-    <div class="editor-head"><b>BOARD EDITOR</b><button id="editToggle" type="button">EDIT LAYOUT</button></div>
+    <div class="editor-head"><b>BOARD EDITOR</b><div class="editor-head-actions"><button id="saveQuick" type="button">SAVE</button><button id="editToggle" type="button">EDIT LAYOUT</button></div></div>
     <div class="editor-body" id="editorBody" hidden>
       <p class="editor-help">Drag marked text directly on the board. Select an evidence image to adjust its view.</p>
       <label>Selected text position <output id="textStatus">none</output></label>
@@ -145,8 +145,10 @@
       contain.addEventListener('change',()=>{if(selectedPhoto)applyPhoto(selectedPhoto,{zoom:zoom.value,x:posX.value,y:posY.value,rotate:rotate.value,contain:contain.checked});});
       document.getElementById('resetSelected').onclick=()=>{if(selected){selected.style.translate='';if(selectedPhoto)applyPhoto(selectedPhoto,{zoom:100,x:50,y:50,rotate:0,contain:false});}};
       document.getElementById('resetAll').onclick=()=>{textNodes.forEach(el=>el.style.translate='');photoNodes.forEach(el=>applyPhoto(el,{zoom:100,x:50,y:50,rotate:0,contain:false}));};
-      document.getElementById('saveBoard').onclick=()=>{localStorage.setItem(key,JSON.stringify(state()));document.getElementById('saveBoard').textContent='SAVED';setTimeout(()=>document.getElementById('saveBoard').textContent='SAVE ON THIS DEVICE',1200);};
-      document.getElementById('printBoard').onclick=()=>window.print();
+      function saveLayout(button){ localStorage.setItem(key,JSON.stringify(state())); if(button){ const old=button.textContent; button.textContent='SAVED'; setTimeout(()=>button.textContent=old,1200); } }
+      document.getElementById('saveQuick').onclick=()=>saveLayout(document.getElementById('saveQuick'));
+      document.getElementById('saveBoard').onclick=()=>saveLayout(document.getElementById('saveBoard'));
+      document.getElementById('printBoard').onclick=()=>{ saveLayout(); body.hidden=true; editor.classList.remove('open'); toggle.textContent='EDIT LAYOUT'; hitLayer.innerHTML=''; requestAnimationFrame(()=>window.print()); };
       load();
     })();
   </script>
